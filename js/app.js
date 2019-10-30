@@ -1,19 +1,19 @@
 // show cart
 
-(function() {
+(function () {
   const cartInfo = document.getElementById("cart-info");
   const cart = document.getElementById("cart");
 
-  cartInfo.addEventListener("click", function() {
+  cartInfo.addEventListener("click", function () {
     cart.classList.toggle("show-cart");
   });
 })();
 
 //  add items to cart
-(function() {
+(function () {
   const cartBtn = document.querySelectorAll(".store-item-icon");
-  cartBtn.forEach(function(btn) {
-    btn.addEventListener("click", function(event) {
+  cartBtn.forEach(function (btn) {
+    btn.addEventListener("click", function (event) {
       // console.log(event.target);
 
       if (event.target.parentElement.classList.contains("store-item-icon")) {
@@ -26,20 +26,20 @@
 
         let name =
           event.target.parentElement.parentElement.nextElementSibling
-            .children[0].children[0].textContent;
+          .children[0].children[0].textContent;
 
         item.name = name;
 
         let price =
           event.target.parentElement.parentElement.nextElementSibling
-            .children[0].children[1].textContent;
+          .children[0].children[1].textContent;
 
         let finalPrice = price.slice(1).trim();
-
+        console.log(finalPrice);
         item.price = finalPrice;
 
-        // console.log(name);
-        // console.log(item);
+        console.log(item.price);
+        console.log(finalPrice);
 
         const cartItem = document.createElement("div");
         cartItem.classList.add(
@@ -78,17 +78,19 @@
   function showTotals() {
     const total = [];
     const item = document.querySelectorAll(".cart-item-price");
-
-    item.forEach(function(item) {
+    console.log(total);
+    item.forEach(function (item) {
       total.push(parseFloat(item.textContent));
     });
 
-    const totalMoney = total.reduce(function(total, item) {
+    const totalMoney = total.reduce(function (total, item) {
       total += item;
       return total;
-    }, 0);
+    }, );
 
+    console.log(totalMoney);
     const finalMoney = totalMoney.toFixed(2);
+    console.log(finalMoney);
     document.getElementById("cart-total").textContent = finalMoney;
     document.querySelector(".item-total").textContent = finalMoney;
     document.getElementById("item-count").textContent = total.length;
